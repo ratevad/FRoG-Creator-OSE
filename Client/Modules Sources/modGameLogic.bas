@@ -81,8 +81,8 @@ Public GameFPS As Long
 'Loc of pointer
 Public CurX As Single '/case
 Public CurY As Single '/case
-Public PotX As Single 'réel
-Public PotY As Single 'réel
+Public PotX As Single 'rï¿½el
+Public PotY As Single 'rï¿½el
 
 ' Used for atmosphere
 Public GameWeather As Long
@@ -179,7 +179,7 @@ On Error GoTo er:
     Rep_Theme = ReadINI("Themes", "Theme", App.Path & "\Themes.ini")
     dr = False
     frmsplash.Visible = True
-    Call SetStatus("Vérification des dossiers...")
+    Call SetStatus("Vï¿½rification des dossiers...")
     DoEvents
         
     If FileExiste("GFX\curseur.cur") Then Call frmMainMenu.imgl.ListImages.Add(1, , LoadPNG(App.Path & "\GFX\curseur.png")): frmMainMenu.MouseIcon = frmMainMenu.imgl.ListImages(1).ExtractIcon: frmMainMenu.MousePointer = 99: frmMirage.MouseIcon = frmMainMenu.imgl.ListImages(1).ExtractIcon: frmMirage.MousePointer = 99: frmNewChar.MouseIcon = frmMainMenu.imgl.ListImages(1).ExtractIcon: frmNewChar.MousePointer = 99
@@ -374,7 +374,7 @@ On Error GoTo er:
     frmNewChar.optMale.BackColor = RGB(R1, G1, B1)
     frmNewChar.optFemale.BackColor = RGB(R1, G1, B1)
     
-    Call SetStatus("Vérification du Statut...")
+    Call SetStatus("Vï¿½rification du Statut...")
     frmsplash.Shape1.Width = frmsplash.Shape1.Width + 200
         
     If Not FileExiste("Config\Serveur.ini") Then
@@ -384,7 +384,7 @@ On Error GoTo er:
     End If
     frmsplash.Visible = True
     
-    Call SetStatus("Initialisation des mises à jours...")
+    Call SetStatus("Initialisation des mises ï¿½ jours...")
     If Not FileExiste("Config\Updater.ini") Then
         WriteINI "UPDATER", "WebSite", "http://roonline.free.fr/patch/", App.Path & "\Config\Updater.ini"
         WriteINI "UPDATER", "WebNews", "http://roonline.free.fr/patch/patch.html", App.Path & "\Config\Updater.ini"
@@ -393,7 +393,7 @@ On Error GoTo er:
     frmsplash.Shape1.Width = frmsplash.Shape1.Width + 200
     Call InitAccountOpt
     Call InitMirageVars
-    'On initialise dès maintenant DirectX
+    'On initialise dï¿½s maintenant DirectX
     Call SetStatus("Initialisation de DirectX...")
     Call InitDirectX
     frmsplash.Shape1.Width = frmsplash.Shape1.Width + 200
@@ -416,7 +416,7 @@ On Error GoTo er:
         frmsplash.SetFocus
         frmServerChooser.Visible = True
         frmsplash.Visible = False
-        'On initialise dès maintenant les surfaces
+        'On initialise dï¿½s maintenant les surfaces
         Call InitSurfaces
         DoEvents
     End If
@@ -426,7 +426,7 @@ On Error GoTo er:
 
 Exit Sub
 er:
-Call MsgBox("Une erreur d'initialisation du logiciel c'est produite(Numéros de l'erreur : " & Err.Number & " Description : " & Err.description & " Source : " & Err.Source & "). Si le probléme pérsiste veulliez contacter un administrateur.", vbCritical, "Erreur")
+Call MsgBox("Une erreur d'initialisation du logiciel c'est produite(Numï¿½ros de l'erreur : " & Err.Number & " Description : " & Err.description & " Source : " & Err.Source & "). Si le problï¿½me pï¿½rsiste veulliez contacter un administrateur.", vbCritical, "Erreur")
 Call GameDestroy
 End Sub
 
@@ -443,7 +443,7 @@ Sub MenuState(ByVal State As Long)
         Case MENU_STATE_NEWACCOUNT
             frmMainMenu.fraNewAccount.Visible = False
             If ConnectToServer = True Then
-                Call SetStatus("Connecté, Envoie des informations du compte en cours..")
+                Call SetStatus("Connectï¿½, Envoie des informations du compte en cours..")
                 Call SendNewAccount(frmMainMenu.txtname2.Text, frmMainMenu.txtpassword22.Text)
                 Exit Sub
             End If
@@ -451,22 +451,22 @@ Sub MenuState(ByVal State As Long)
         'Case MENU_STATE_DELACCOUNT
             'frmDeleteAccount.Visible = False
          '   If ConnectToServer = True Then
-          '      Call SetStatus("Connecté, Envoie de la requête d'éffacement du compte..")
+          '      Call SetStatus("Connectï¿½, Envoie de la requï¿½te d'ï¿½ffacement du compte..")
                 'Call SendDelAccount(frmDeleteAccount.txtName.Text, frmDeleteAccount.txtPassword.Text)
            ' End If
         
         Case MENU_STATE_LOGIN
             frmMainMenu.fraLogin.Visible = False
-            If ConnectToServer = True Then Call SetStatus("Connecté, Envoie de la connexion au compte.."): Call SendLogin(frmMainMenu.txtName.Text, frmMainMenu.txtPassword.Text)
+            If ConnectToServer = True Then Call SetStatus("Connectï¿½, Envoie de la connexion au compte.."): Call SendLogin(frmMainMenu.txtName.Text, frmMainMenu.txtPassword.Text)
         
         Case MENU_STATE_NEWCHAR
             frmMainMenu.fraPers.Visible = False
-            If ConnectToServer = True Then Call SetStatus("Connecté, Recherche des classes disponibles.."): Call SendGetClasses
+            If ConnectToServer = True Then Call SetStatus("Connectï¿½, Recherche des classes disponibles.."): Call SendGetClasses
             
         Case MENU_STATE_ADDCHAR
             frmNewChar.Visible = False
             If ConnectToServer = True Then
-                Call SetStatus("Connecté, envoie des information additionnel du personnages..")
+                Call SetStatus("Connectï¿½, envoie des information additionnel du personnages..")
                 If frmNewChar.optMale.Value = True Then
                     Call SendAddChar(frmNewChar.txtName, 0, frmNewChar.cmbClass.ItemData(frmNewChar.cmbClass.ListIndex), frmMainMenu.lstChars.ListIndex + 1)
                 Else
@@ -476,7 +476,7 @@ Sub MenuState(ByVal State As Long)
         
         Case MENU_STATE_DELCHAR
             frmMainMenu.fraPers.Visible = False
-            If ConnectToServer = True Then Call SetStatus("Connecté, envoie des information sur la requête d'éffacement du personnage..."): Call SendDelChar(frmMainMenu.lstChars.ListIndex + 1)
+            If ConnectToServer = True Then Call SetStatus("Connectï¿½, envoie des information sur la requï¿½te d'ï¿½ffacement du personnage..."): Call SendDelChar(frmMainMenu.lstChars.ListIndex + 1)
             
         Case MENU_STATE_USECHAR
             frmMainMenu.fraPers.Visible = False
@@ -490,7 +490,7 @@ Sub MenuState(ByVal State As Long)
     If Not IsConnected And Connucted = True Then
         frmMainMenu.Visible = True
         frmsplash.Visible = False
-        Call MsgBox("Désolé, le serveur semble être indisponible, réessayer dans quelque minute ou visiter" & WEBSITE, vbOKOnly, GAME_NAME)
+        Call MsgBox("Dï¿½solï¿½, le serveur semble ï¿½tre indisponible, rï¿½essayer dans quelque minute ou visiter" & WEBSITE, vbOKOnly, GAME_NAME)
     End If
 End Sub
 Sub GameInit()
@@ -847,10 +847,10 @@ rest:
                      End If
                      
                      Call BltBlood(i, PIC_X, PIC_Y, 40)
-                     ' Call BltBlood(i) ferais aussi l'affaire car les autres paramètres peuvent être modifier selon le blood.png.
-                     ' Le premier et le second paramètre sont la taille X et Y ce qui permet d'avoir des animations de sang 96X96 exemple.
-                     ' Il se peux que le code demande à être modifié dans cette condition.
-                     ' Le dernier paramètre est le temps de chaque image en ms (1000 ms = 1 seconde).
+                     ' Call BltBlood(i) ferais aussi l'affaire car les autres paramï¿½tres peuvent ï¿½tre modifier selon le blood.png.
+                     ' Le premier et le second paramï¿½tre sont la taille X et Y ce qui permet d'avoir des animations de sang 96X96 exemple.
+                     ' Il se peux que le code demande ï¿½ ï¿½tre modifiï¿½ dans cette condition.
+                     ' Le dernier paramï¿½tre est le temps de chaque image en ms (1000 ms = 1 seconde).
                      
                      Call BltSpell(i)
                      
@@ -868,6 +868,13 @@ rest:
              '    If Player(MyIndex).LevelUpT + 3000 > Tick Then Call BltPlayerLevelUp(MyIndex) Else Player(MyIndex).LevelUpT = 0
              'End If
         
+            
+                                
+            ' Blit out tile layer fringe
+            For y = MinDrawMapY To MaxDrawMapY
+                For x = MinDrawMapX To MaxDrawMapX
+                    Call BltFringeTile(x, y)
+                Next x
             If Not GettingMap And AccOpt.PlayName Then
                 'Verouiller le backbuffer pour pouvoir ecrire le nom des joueurs et de leur guildes
                 TexthDC = DD_BackBuffer.GetDC
@@ -886,13 +893,7 @@ rest:
                 Next i
                 Call DD_BackBuffer.ReleaseDC(TexthDC)
             End If
-                                
-            ' Blit out tile layer fringe
-            For y = MinDrawMapY To MaxDrawMapY
-                For x = MinDrawMapX To MaxDrawMapX
-                    Call BltFringeTile(x, y)
-                Next x
-            Next y
+Next y
         End If
         
         If Not GettingMap Then
@@ -933,12 +934,12 @@ rest:
                     End If
                 Else
                     If Not AccOpt.PlayName Then
-                        If Tick < NPCDmgTime + 2000 Then Call DrawText(TexthDC, 6 + NewX + sx, NewY - 22 - cychat - ii + sx, "Raté", QBColor(BrightBlue)) Else NPCDmgAddRem = 0
+                        If Tick < NPCDmgTime + 2000 Then Call DrawText(TexthDC, 6 + NewX + sx, NewY - 22 - cychat - ii + sx, "Ratï¿½", QBColor(BrightBlue)) Else NPCDmgAddRem = 0
                     Else
                         If GetPlayerGuild(MyIndex) <> vbNullString Then
-                            If Tick < NPCDmgTime + 2000 Then Call DrawText(TexthDC, 6 + NewX + sx, NewY - 42 - cychat - ii + sx, "Raté", QBColor(BrightBlue)) Else NPCDmgAddRem = 0
+                            If Tick < NPCDmgTime + 2000 Then Call DrawText(TexthDC, 6 + NewX + sx, NewY - 42 - cychat - ii + sx, "Ratï¿½", QBColor(BrightBlue)) Else NPCDmgAddRem = 0
                         Else
-                            If Tick < NPCDmgTime + 2000 Then Call DrawText(TexthDC, 6 + NewX + sx, NewY - 22 - cychat - ii + sx, "Raté", QBColor(BrightBlue)) Else NPCDmgAddRem = 0
+                            If Tick < NPCDmgTime + 2000 Then Call DrawText(TexthDC, 6 + NewX + sx, NewY - 22 - cychat - ii + sx, "Ratï¿½", QBColor(BrightBlue)) Else NPCDmgAddRem = 0
                         End If
                     End If
                 End If
@@ -956,9 +957,9 @@ rest:
                             End If
                         Else
                             If Not AccOpt.NpcName Then
-                                If Tick < DmgTime + 2000 Then Call DrawText(TexthDC, (MapNpc(NPCWho).x - NewPlayerX) * PIC_X + sx + 6 + MapNpc(NPCWho).XOffset - NewXOffset, (MapNpc(NPCWho).y - NewPlayerY) * PIC_Y + sx - 20 + MapNpc(NPCWho).YOffset - NewYOffset - iii, "Raté", QBColor(BrightBlue)) Else DmgAddRem = 0
+                                If Tick < DmgTime + 2000 Then Call DrawText(TexthDC, (MapNpc(NPCWho).x - NewPlayerX) * PIC_X + sx + 6 + MapNpc(NPCWho).XOffset - NewXOffset, (MapNpc(NPCWho).y - NewPlayerY) * PIC_Y + sx - 20 + MapNpc(NPCWho).YOffset - NewYOffset - iii, "Ratï¿½", QBColor(BrightBlue)) Else DmgAddRem = 0
                             Else
-                                If Tick < DmgTime + 2000 Then Call DrawText(TexthDC, (MapNpc(NPCWho).x - NewPlayerX) * PIC_X + sx + 6 + MapNpc(NPCWho).XOffset - NewXOffset, (MapNpc(NPCWho).y - NewPlayerY) * PIC_Y + sx - 30 + MapNpc(NPCWho).YOffset - NewYOffset - iii, "Raté", QBColor(BrightBlue)) Else DmgAddRem = 0
+                                If Tick < DmgTime + 2000 Then Call DrawText(TexthDC, (MapNpc(NPCWho).x - NewPlayerX) * PIC_X + sx + 6 + MapNpc(NPCWho).XOffset - NewXOffset, (MapNpc(NPCWho).y - NewPlayerY) * PIC_Y + sx - 30 + MapNpc(NPCWho).YOffset - NewYOffset - iii, "Ratï¿½", QBColor(BrightBlue)) Else DmgAddRem = 0
                             End If
                         End If
                         iii = iii + 1
@@ -1066,10 +1067,10 @@ rest:
             If TickFPS >= 33 Then TickFPS = 0: GameFPS = FPS: FPS = 0
         End If
         
-        'Déchargement de textures en RAM
+        'Dï¿½chargement de textures en RAM
         UnloadTextures
         
-        'Bloquer les FPS a 30 pour éviter de surcharger le processeur
+        'Bloquer les FPS a 30 pour ï¿½viter de surcharger le processeur
         Do While GetTickCount < Tick + 30
             DoEvents
             Sleep 1
@@ -1088,15 +1089,15 @@ rest:
         Call GameDestroy
         
         ' Report disconnection if server disconnects
-        If IsConnected = False Then Call MsgBox("Merci d'avoir joué à " & GAME_NAME & "!", vbOKOnly, GAME_NAME)
+        If IsConnected = False Then Call MsgBox("Merci d'avoir jouï¿½ ï¿½ " & GAME_NAME & "!", vbOKOnly, GAME_NAME)
     Else
         deco = False
-        Call MsgBox("Merci d'avoirs joué à " & GAME_NAME & "!", vbOKOnly, GAME_NAME)
+        Call MsgBox("Merci d'avoirs jouï¿½ ï¿½ " & GAME_NAME & "!", vbOKOnly, GAME_NAME)
     End If
 Exit Sub
 er:
 If Val(Mid(Err.Number, 1, 9)) = -200553208 Then GoTo rest:
-Call MsgBox("Une erreur interne au logiciel c'est produite(Numéros de l'erreur : " & Err.Number & " Description : " & Err.description & " Source : " & Err.Source & "). Si le probléme pérsiste veulliez contacter un administrateur.", vbCritical, "Erreur")
+Call MsgBox("Une erreur interne au logiciel c'est produite(Numï¿½ros de l'erreur : " & Err.Number & " Description : " & Err.description & " Source : " & Err.Source & "). Si le problï¿½me pï¿½rsiste veulliez contacter un administrateur.", vbCritical, "Erreur")
 Call GameDestroy
 End Sub
 
@@ -1243,7 +1244,7 @@ Dim ty As Long
         .Left = (x - NewPlayerX) * PIC_X + sx - NewXOffset
         .Right = .Left + PIC_X
     End With
-    'Affichage du panorama inférieur si il y en à un
+    'Affichage du panorama infï¿½rieur si il y en ï¿½ un
     If Trim$(Map(GetPlayerMap(MyIndex)).PanoInf) <> vbNullString Then
         rec.Top = y * PIC_Y
         If rec.Top + PIC_Y > DDSD_PanoInf.lHeight Then rec.Bottom = DDSD_PanoInf.lHeight: rec_pos.Bottom = rec_pos.Bottom - ((rec.Top + PIC_Y) - DDSD_PanoInf.lHeight) Else rec.Bottom = rec.Top + PIC_Y
@@ -1403,7 +1404,7 @@ Dim ty As Long
             Call DD_BackBuffer.BltFast(tx, ty, DD_TileSurf(F3AnimTileSet), rec, DDBLTFAST_WAIT Or DDBLTFAST_SRCCOLORKEY)
         End If
     End If
-    'Affichage du panorama supérieur si il y en à un
+    'Affichage du panorama supï¿½rieur si il y en ï¿½ un
     If Trim$(Map(GetPlayerMap(MyIndex)).PanoSup) <> vbNullString Then
         rec.Top = y * PIC_Y
         If rec.Top + PIC_Y > DDSD_PanoSup.lHeight Then rec.Bottom = DDSD_PanoSup.lHeight: rec_pos.Bottom = rec_pos.Bottom - ((rec.Top + PIC_Y) - DDSD_PanoSup.lHeight) Else rec.Bottom = rec.Top + PIC_Y
@@ -1964,11 +1965,11 @@ Dim Color As Long
 End Sub
 
 Sub ProcessMovement(ByVal Index As Long)
-' vérifier si le joueur(sprite) ne va pas trop loin
+' vï¿½rifier si le joueur(sprite) ne va pas trop loin
 If Player(Index).XOffset > PIC_X Or Player(Index).XOffset < PIC_X * -1 Then Player(Index).XOffset = 0: Player(Index).Moving = 0: Exit Sub
 If Player(Index).YOffset > PIC_Y Or Player(Index).YOffset < PIC_Y * -1 Then Player(Index).YOffset = 0: Player(Index).Moving = 0: Exit Sub
 
-' Verifier si le joueur à une monture
+' Verifier si le joueur ï¿½ une monture
 If Player(Index).ArmorSlot > 0 And Player(Index).ArmorSlot < MAX_INV Then
 If GetPlayerInvItemNum(Index, Player(Index).ArmorSlot) > 0 And GetPlayerInvItemNum(Index, Player(Index).ArmorSlot) < MAX_ITEMS Then
 If (Player(Index).Moving = MOVING_WALKING Or Player(Index).Moving = MOVING_RUNNING) And Item(GetPlayerInvItemNum(Index, Player(Index).ArmorSlot)).Type = ITEM_TYPE_MONTURE Then
@@ -2586,7 +2587,7 @@ End If
             
         ' Say message
         If Len(Trim$(MyText)) > 0 Then
-            '//Début du code de canaux
+            '//Dï¿½but du code de canaux
             If frmMirage.Canal.ListIndex = 1 Then
                 Call BroadcastMsg(MyText)
                 MyText = vbNullString
@@ -2607,7 +2608,7 @@ End If
                    
                     Call PlayerMsg(MyText, name)
                 Else
-                    Call AddText("Vous avez oublié le nom du joueur", AlertColor)
+                    Call AddText("Vous avez oubliï¿½ le nom du joueur", AlertColor)
                 End If
                     MyText = vbNullString
                     Exit Sub
